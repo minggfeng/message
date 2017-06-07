@@ -1,17 +1,17 @@
-# Project Name
+# Pledgeit-Search
 
 The project description
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Ming Feng
+- Ali Elgiadi
+- Oliver Ullman
+- Kriz Cortes
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://docs.google.com/document/d/1Uc6yfhYeWaZFlB6Q7AkCwsTridQs7q7b_kHSwMbx0tY/edit)
 
 ## Contributing
 
@@ -34,7 +34,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 - Node 6.9.x
 - Redis 3.2.x
 - Postgresql 9.6.x
-- etc
+- Bookshelf
+- Knex
+- React
+- React Router
+- Docker
+- Passport
+- Mail service ( mailChimp or mailGun )
 
 ## Development
 
@@ -53,15 +59,6 @@ Yarn is a replacement for npm. It's faster and *guarantees* consistency -- as yo
 ```
 yarn global add grunt-cli knex eslint
 ```
-
-## App Configuration
-
-Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable. 
-
-For environments that require use of environment variables, you can supply variables as defined in `config/custom-environment-variables.json`.
-
-See https://www.npmjs.com/package/config
-And https://github.com/lorenwest/node-config/wiki/Environment-Variables#custom-environment-variables
 
 ## Database Initialization
 
@@ -96,5 +93,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
-
