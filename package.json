@@ -8,9 +8,14 @@
   "author": "Mysterious Microwaves",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "bookshelf": "^0.10.3",
+    "config": "^1.26.1",
     "express": "^4.15.3",
+    "knex": "^0.13.0",
     "morgan": "^1.8.2",
     "npm": "^5.0.3",
-    "redis": "^2.7.1"
+    "pg": "^6.2.4",
+    "redis": "^2.7.1",
+    "socket.io": "^2.0.2"
   }
 }
