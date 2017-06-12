@@ -81,7 +81,7 @@ fetchNsps()
           message.profiles = {};
           message.profiles.display = res.get('display');
           message.created_at = created_at;
-          if (messages.length >= 100) {
+          if (messages.length >= 50) {
             messages.shift();
           }
           messages.push(message);
