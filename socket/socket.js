@@ -81,6 +81,9 @@ fetchNsps()
           message.profiles = {};
           message.profiles.display = res.get('display');
           message.created_at = created_at;
+          if (messages.length >= 100) {
+            messages.shift();
+          }
           messages.push(message);
           nsp.emit('message', messages);
           redis.set(messageKey, messages, (err, reply) => {
