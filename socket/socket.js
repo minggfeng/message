@@ -23,8 +23,6 @@ fetchNsps()
     let allSockets = {};
 
     nsp.on('connection', socket => {
-      // redis.delete(memberKey)
-      console.log(`connected nsp${orgId}`, members, messages);
 
       if (redis.exists(memberKey)) {
         redis.get(memberKey, (data) => {
@@ -58,19 +56,55 @@ fetchNsps()
             }
           }) 
         }
-        nsp.emit('init', {members: members, messages: messages })
+
+        if (!messages.length) {
+          models.Message
+          .where({ organization_id: orgId })
+          .query((qb) => {
+            qb.orderBy('created_at')
+          })
+          .fetchAll({ withRelated: 'profiles' })
+          .then(res => {
+            messages = res.serialize().slice(Math.max(res.length - 10, 1))
+          })
+          .catch(err => {
+            console.log('Error fetching messages from DB');
+          })
+        }
+        nsp.emit('init', {members: members, messages: messages });
       });
 
       socket.on('message', message => {
-        messages.push(message);
-        redis.set(messageKey, messages, (err, reply) => {
-          if (reply) {
-            console.log('added message', reply)
-          } else {
-            console.log('error adding message', err);
-          }
+        let created_at = new Date().toISOString();
+        models.Profile.where({ id: message.user }).fetch({ columns: ['display'] })
+        .then(res => {
+          message.profiles = {};
+          message.profiles.display = res.get('display');
+          message.created_at = created_at;
+          messages.push(message);
+          nsp.emit('message', messages);
+          redis.set(messageKey, messages, (err, reply) => {
+            if (reply) {
+              console.log('added message', reply)
+            } else {
+              console.log('error adding message', err);
+            }
+          });
         })
-        nsp.emit('message', messages);
+        .catch(err => {
+          console.log('error updating message')
+        })
+        
+        models.Message.forge({ 
+          profile_id: message.user,
+          organization_id: message.orgId,
+          text: message.text,
+          created_at: created_at
+        }).save()
+        .then(message => {
+          console.log('Successful insert of message');
+        })
+        .catch(err => console.log('Error inserting message'));
       });
 
       socket.on('leave', userId => {
@@ -104,29 +138,6 @@ fetchNsps()
         })
         nsp.emit('leave', members);
       })
-
-
-      // socket.on('message', message => {
-      //   messages.push(message);
-      //   redis.addMessage(messageKey, JSON.stringify(messages), (err, reply) => {
-      //     if (reply) {
-      //       console.log('updated message')
-      //     }
-      //   });
-      //   console.log('message',messages)
-      //   nsp.emit('message', messages);
-
-      //   // models.Message.forge({ 
-      //   //   profile_id: message.user,
-      //   //   organization_id: message.orgId,
-      //   //   text: message.text,
-      //   //   created_at: new Date().toISOString()
-      //   // }).save()
-      //   // .then(message => {
-      //   //   console.log('Successful insert of message');
-      //   // })
-      //   // .catch(err => console.log('Error inserting message'));
-      // });
     })
   }
 
