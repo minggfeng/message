@@ -1,7 +1,6 @@
 'use strict';
 const express = require('express');
 const middleware = require('./middleware');
-const routes = require('./routes');
 const knex = require('knex')(require('../knexfile'));
 const redisClient = require('../redis/redis.js');
 
