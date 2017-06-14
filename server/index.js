@@ -1,7 +1,7 @@
 'use strict';
 const app = require('./app');
 const db = require('../db');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6100;
 const http = require('http').createServer(app);
 
 const server = http.listen(PORT, () => {
