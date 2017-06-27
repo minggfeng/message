@@ -52,7 +52,7 @@ brew install postgresql
 
 ## Database Initialization
 
-IMPORTANT: reusing Database on hrsf75-thesis repo.
+IMPORTANT: connecting to database on hrsf75-thesis repo.
 
 ## Running the App
 
