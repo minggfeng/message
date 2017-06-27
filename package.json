@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon server",
-    "redis": "redis-server redis/redis.conf --port 8000 "
+    "redis": "redis-server redis/redis.conf --port 6200 "
   },
   "author": "Mysterious Microwaves",
   "dependencies": {

@@ -1,6 +1,6 @@
-# Pledgeit-Search
+# message
 
-The project description
+Chat microservice for pledgeit
 
 ## Team
 
@@ -19,11 +19,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 # Table of Contents
 
-1. [Usage](#Usage)
+1. [Usage](#usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+    1. [Installing Dependencies](#installing-system-dependecies)
+1. [Database Initialization](#database-initialization)
+1. [Running the App](#running-the-app)
 
 ## Usage
 
@@ -36,11 +37,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 - Postgresql 9.6.x
 - Bookshelf
 - Knex
-- React
-- React Router
 - Docker
-- Passport
-- Mail service ( mailChimp or mailGun )
 
 ## Development
 
@@ -52,44 +49,12 @@ brew install redis
 brew install postgresql
 ```
 
-Yarn is a replacement for npm. It's faster and *guarantees* consistency -- as you deploy your code in various environments, you won't run the risk of slight variations in what gets installed.
-
-### Install Project Dependencies
-
-```
-yarn global add grunt-cli knex eslint
-```
-
 ## Database Initialization
 
-IMPORTANT: ensure `postgres` is running before performing these steps.
-
-### Database Creation:
-
-Use grunt to create a new database for your development and test environments:
-
-Development envronment: `grunt pgcreatedb:default`
-
-Other environments, specify like so: `NODE_ENV=test grunt pgcreatedb:default`
-
-### Run Migrations & Data Seeds
-
-In terminal, from the root directory:
-
-`knex migrate:latest --env NODE_ENV`
-
-`knex migrate:rollback --env NODE_ENV`
-
-`knex seed:run --env NODE_ENV`
-
-Note: `--env NODE_ENV` may be omitted for development. For example, `knex migrate:latest` will run all migrations in the development environment, while `knex migrate:latest --env test` will migrate in the test environment.
+IMPORTANT: reusing Database on hrsf75-thesis repo.
 
 ## Running the App
 
-To run webpack build: `yarn run build`
-
 To run server: `yarn run start`
 
-To run tests: `yarn run test`
-
-To run your redis server for the session store `redis-server`
+To run redis: `yarn run redis`
