@@ -28,7 +28,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Usage
 
-> Some usage instructions
+Ensure client has same domain and port for socket.IO to sync.
 
 ## Requirements
 
@@ -38,6 +38,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 - Bookshelf
 - Knex
 - Docker
+- Socket.IO
 
 ## Development
 
